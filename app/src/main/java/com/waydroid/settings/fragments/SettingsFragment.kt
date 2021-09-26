@@ -1,4 +1,4 @@
-package com.waydroid.settings
+package com.waydroid.settings.fragments
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
@@ -10,9 +10,10 @@ import android.util.Log
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.waydroid.settings.R
 import java.lang.reflect.InvocationTargetException
 
-class WayDroidSettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var switchEnablePCMode: SwitchPreferenceCompat
     private lateinit var switchEnabledWayDroidSystemUI: SwitchPreferenceCompat
 
