@@ -94,4 +94,12 @@ dependencies {
 
 	// Viewpager
 	implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+	// MD Viewer
+	implementation 'com.github.mukeshsolanki:MarkdownView-Android:1.1.1'
+
+	// OkHttp & RxThings
+	implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+	implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+	implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
 }

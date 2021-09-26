@@ -4,8 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.waydroid.settings.R
+import com.waydroid.settings.databinding.FragmentAboutBinding
+import com.waydroid.settings.utils.FileDownloader
+import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
+import io.reactivex.disposables.Disposables
+import io.reactivex.schedulers.Schedulers
+import okhttp3.OkHttpClient
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 /**
  * A simple [Fragment] subclass.
@@ -13,14 +23,6 @@ import com.waydroid.settings.R
  * create an instance of this fragment.
  */
 class AboutFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
-    }
 
     companion object {
         /**
@@ -32,4 +34,81 @@ class AboutFragment : Fragment() {
         @JvmStatic
         fun newInstance() = AboutFragment()
     }
+
+    private lateinit var binding: FragmentAboutBinding
+    private lateinit var readmeMD: File
+    private var isDownloaded = false
+    private var isLoaded = false
+    private var disposable = Disposables.disposed()
+
+
+
+    private val fileDownloader by lazy {
+        FileDownloader(
+            OkHttpClient.Builder().build()
+        )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        readmeMD = File("${requireContext().getExternalFilesDir(null)!!.absolutePath}/README.md")
+    }
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.fragment_about, container, false)
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isDownloaded) loadMDViewer()
+    }
+
+    override fun onDestroyView() {
+        disposable.dispose()
+        super.onDestroyView()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        disposable = fileDownloader.download("https://raw.githubusercontent.com/waydroid/docs/master/README.md", readmeMD)
+            .throttleFirst(2, TimeUnit.SECONDS)
+            .toFlowable(BackpressureStrategy.LATEST)
+            .subscribeOn(Schedulers.io())
+            .observeOn(mainThread())
+            .subscribe({
+                // Downloading progress
+            }, {
+                // Download failed
+               it.printStackTrace()
+            }, {
+                // Downloaded
+                isDownloaded = true
+                // load MD file only if the fragment is visible
+                if (isVisible) loadMDViewer()
+            })
+    }
+
+    /**
+     * Hides the progress bar & load the MD file
+     */
+    private fun loadMDViewer() {
+        if (!isLoaded) {
+            binding.apply {
+                markdownView.apply {
+                    loadMarkdownFromFile(readmeMD)
+                    isOpenUrlInBrowser = true
+                    visibility = View.VISIBLE
+                }
+                progressBar.visibility = View.GONE
+            }
+            isLoaded = true
+        }
+    }
+
 }
