@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ic_name" translatable="false">WayDroid Settings</string>
+    <string name="app_name" translatable="false">WayDroid Settings</string>
     <string name="waydroid_dashboard_title" translatable="false">WayDroid</string>
     <string name="wyadroid_dashboard_summary" translatable="false">Config WayDroid features</string>
     <string name="title_switch_enable_pc_mode">Enable pc mode</string>

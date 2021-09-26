@@ -2,25 +2,26 @@ package com.waydroid.settings
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.waydroid.settings.databinding.SettingsMainBinding
 
 class WayDroidSettings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings_main)
+        val binding = DataBindingUtil.setContentView<SettingsMainBinding>(this, R.layout.settings_main)
+
+        // Set toolbar properties
+        binding.toolbarId.apply {
+            setSupportActionBar(this)
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
+        }
+
+        // load fragment
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.settings_container, WayDroidSettingsFragment())
+                .replace(binding.settingsContainer.id, WayDroidSettingsFragment())
                 .commit()
-
-        // Enable back button for preference activity
-        supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-        }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
     }
 }
