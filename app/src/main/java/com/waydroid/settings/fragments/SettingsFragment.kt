@@ -38,26 +38,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 enableWayDroidSystemUI((preference as SwitchPreferenceCompat).isChecked)
                 true
             }
-        findPreference<Preference>(getString(R.string.key_bd_developer))
-            ?.setOnPreferenceClickListener { _: Preference ->
-                openURL("https://github.com/jonwest")
-                true
-            }
-        findPreference<Preference>(getString(R.string.key_bd_github))
-            ?.setOnPreferenceClickListener { _: Preference ->
-                openURL("https://github.com/waydroid")
-                true
-            }
-        findPreference<Preference>(getString(R.string.key_bd_group))
-            ?.setOnPreferenceClickListener { _: Preference ->
-                openURL("http://blissos.org/")
-                true
-            }
-    }
-
-    private fun openURL(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(intent)
     }
 
     private fun enablePCMode(enable: Boolean) {
