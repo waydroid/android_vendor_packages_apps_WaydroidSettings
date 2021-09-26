@@ -1,4 +1,4 @@
-package com.boringdroid.settings
+package com.waydroid.settings
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
@@ -12,9 +12,9 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import java.lang.reflect.InvocationTargetException
 
-class BoringdroidSettingsFragment : PreferenceFragmentCompat() {
+class WayDroidSettingsFragment : PreferenceFragmentCompat() {
     private lateinit var switchEnablePCMode: SwitchPreferenceCompat
-    private lateinit var switchEnabledBoringdroidSystemUI: SwitchPreferenceCompat
+    private lateinit var switchEnabledWayDroidSystemUI: SwitchPreferenceCompat
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
@@ -22,29 +22,29 @@ class BoringdroidSettingsFragment : PreferenceFragmentCompat() {
             getString(R.string.key_switch_enable_pc_mode)
         ) as SwitchPreferenceCompat
         switchEnablePCMode.isChecked = getBooleanSystemProperties(PROPERTY_PC_MODE_KEY)
-        switchEnabledBoringdroidSystemUI = findPreference<Preference>(
+        switchEnabledWayDroidSystemUI = findPreference<Preference>(
             getString(R.string.key_switch_enable_bd_nav_bar)
         ) as SwitchPreferenceCompat
-        switchEnabledBoringdroidSystemUI.isChecked =
+        switchEnabledWayDroidSystemUI.isChecked =
             getBooleanSystemProperties(PROPERTY_BD_SYSTEMUI_KEY)
         switchEnablePCMode.onPreferenceClickListener =
             Preference.OnPreferenceClickListener { preference: Preference ->
                 enablePCMode((preference as SwitchPreferenceCompat).isChecked)
                 true
             }
-        switchEnabledBoringdroidSystemUI.onPreferenceClickListener =
+        switchEnabledWayDroidSystemUI.onPreferenceClickListener =
             Preference.OnPreferenceClickListener { preference: Preference ->
-                enableBoringdroidSystemUI((preference as SwitchPreferenceCompat).isChecked)
+                enableWayDroidSystemUI((preference as SwitchPreferenceCompat).isChecked)
                 true
             }
         findPreference<Preference>(getString(R.string.key_bd_developer))
             ?.setOnPreferenceClickListener { _: Preference ->
-                openURL("https://github.com/utzcoz")
+                openURL("https://github.com/jonwest")
                 true
             }
         findPreference<Preference>(getString(R.string.key_bd_github))
             ?.setOnPreferenceClickListener { _: Preference ->
-                openURL("https://github.com/boringdroid")
+                openURL("https://github.com/waydroid")
                 true
             }
         findPreference<Preference>(getString(R.string.key_bd_group))
@@ -64,8 +64,8 @@ class BoringdroidSettingsFragment : PreferenceFragmentCompat() {
         setBooleanSystemProperties(PROPERTY_PC_MODE_KEY, enable)
     }
 
-    private fun enableBoringdroidSystemUI(enable: Boolean) {
-        Log.d(TAG, "enable Boringdroid SystemUI $enable")
+    private fun enableWayDroidSystemUI(enable: Boolean) {
+        Log.d(TAG, "enable WayDroid SystemUI $enable")
         setBooleanSystemProperties(PROPERTY_BD_SYSTEMUI_KEY, enable)
         val context: Context? = activity
         if (context != null) {

@@ -3,11 +3,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     coreApp="true"
-    package="com.boringdroid.settings"
+    package="com.waydroid.settings"
     android:sharedUserId="android.uid.system">
 
     <application
-        android:name=".BoringdroidSettingsApplication"
+        android:name=".WayDroidSettingsApplication"
         android:allowBackup="false"
         android:defaultToDeviceProtectedStorage="true"
         android:hardwareAccelerated="true"
@@ -21,7 +21,7 @@
         tools:node="merge">
 
         <activity
-            android:name=".BoringdroidSettings"
+            android:name=".WayDroidSettings"
             android:exported="true"
             android:icon="@drawable/ic_icon"
             android:label="@string/ic_name"

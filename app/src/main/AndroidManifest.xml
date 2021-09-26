@@ -2,11 +2,11 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     coreApp="true"
-    package="com.boringdroid.settings"
+    package="com.waydroid.settings"
     android:sharedUserId="android.uid.system">
 
     <application
-        android:name=".BoringdroidSettingsApplication"
+        android:name="com.waydroid.settings.WayDroidSettingsApplication"
         android:allowBackup="false"
         android:defaultToDeviceProtectedStorage="true"
         android:hardwareAccelerated="true"
@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".BoringdroidSettings"
+            android:name="com.waydroid.settings.WayDroidSettings"
             android:exported="true"
             android:icon="@drawable/ic_icon"
             android:label="@string/ic_name">
@@ -32,10 +32,10 @@
                 android:value="com.android.settings.category.ia.homepage" />
             <meta-data
                 android:name="com.android.settings.title"
-                android:value="@string/boringdorid_dashboard_title" />
+                android:value="@string/waydroid_dashboard_title" />
             <meta-data
                 android:name="com.android.settings.summary"
-                android:value="@string/boringdorid_dashboard_summary" />
+                android:value="@string/wyadroid_dashboard_summary" />
         </activity>
     </application>
 </manifest>

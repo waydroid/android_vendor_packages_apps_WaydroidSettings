@@ -1,4 +1,4 @@
-package com.boringdroid.settings
+package com.waydroid.settings
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -19,7 +19,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.reflect.InvocationTargetException
 
-class BoringdroidFullscreenManageFragment : PreferenceFragmentCompat() {
+class WayDroidFullscreenManageFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         // Do nothing
     }
@@ -162,7 +162,7 @@ class BoringdroidFullscreenManageFragment : PreferenceFragmentCompat() {
         @SuppressLint("PrivateApi")
         private fun getPackageWindowingMode(packageName: String): Int {
             try {
-                val clazz = Class.forName("com.android.internal.BoringdroidManager")
+                val clazz = Class.forName("com.android.internal.WayDroidManager")
                 val setMethod = clazz.getMethod(
                     "getPackageOverlayWindowingMode", String::class.java
                 )
@@ -183,7 +183,7 @@ class BoringdroidFullscreenManageFragment : PreferenceFragmentCompat() {
         private fun savePackageOverlayWindowingMode(packageName: String, windowingMode: Int) {
             Environment.getDataDirectory()
             try {
-                val clazz = Class.forName("com.android.internal.BoringdroidManager")
+                val clazz = Class.forName("com.android.internal.WayDroidManager")
                 val setMethod = clazz.getMethod(
                     "savePackageOverlayWindowingMode", String::class.java, Int::class.java
                 )

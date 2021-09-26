@@ -10,7 +10,7 @@
             app:title="@string/title_switch_enable_pc_mode" />
 
         <Preference
-            app:fragment="com.boringdroid.settings.BoringdroidFullscreenManageFragment"
+            app:fragment="com.waydroid.settings.WayDroidFullscreenManageFragment"
             app:key="@string/key_set_all_fullscreen_apps"
             app:title="@string/title_set_all_fullscreen_apps"/>
     </PreferenceCategory>
