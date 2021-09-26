@@ -5,6 +5,8 @@
     package="com.waydroid.settings"
     android:sharedUserId="android.uid.system">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.waydroid.settings.WayDroidSettingsApplication"
         android:allowBackup="false"
