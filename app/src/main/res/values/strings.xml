@@ -3,16 +3,30 @@
     <string name="app_name" translatable="false">WayDroid Settings</string>
     <string name="waydroid_dashboard_title" translatable="false">WayDroid</string>
     <string name="wyadroid_dashboard_summary" translatable="false">Config WayDroid features</string>
-    <string name="title_switch_enable_pc_mode">Enable pc mode</string>
-    <string name="title_switch_enable_bd_nav_bar">Enable WayDroid Navigation Bar</string>
-    <string name="title_category_pc_mode">PC Mode</string>
-    <string name="key_category_pc_mode">category_pc_mode</string>
-    <string name="key_category_bd_systemui">category_bd_systemui</string>
-    <string name="key_switch_enable_bd_nav_bar">enable_bd_nav_bar</string>
-    <string name="title_category_bd_systemui">WayDroid SystemUI</string>
-    <string name="key_switch_enable_pc_mode">enable_pc_mode</string>
-    <string name="key_set_all_fullscreen_apps">set_bd_all_fullscreen_apps</string>
-    <string name="title_set_all_fullscreen_apps">Set all fullscreen app</string>
+    <string name="key_category_wd_systemui">category_wd_systemui</string>
+    <string name="title_category_wd_systemui">WayDroid SystemUI</string>
+    <string name="key_switch_multi_windows_mode">multi_windows</string>
+    <string name="title_switch_enable_multi_windows_mode">Enable Multi Windows</string>
+    <string name="desc_switch_enable_freedom_windows_mode">Enables persistent freeform window mode</string>
+    <string name="key_switch_invert_colors">invert_colors</string>
+    <string name="title_switch_invert_colors">Invert Colors</string>
+    <string name="desc_switch_invert_colors">Swaps the color space from RGBA to BGRA</string>
+    <string name="key_seekbar_height_padding">height_padding</string>
+    <string name="title_seekbar_height_padding">Height Padding</string>
+    <string name="desc_seekbar_height_padding">Adjust Height padding (30 will allow you to use navbar on mobile)</string>
+    <string name="key_seekbar_width_padding">width_padding</string>
+    <string name="title_seekbar_width_padding">Width Padding</string>
+    <string name="desc_seekbar_width_padding">Adjust width padding</string>
+    <string name="key_seekbar_display_width">display_width</string>
+    <string name="title_seekbar_display_width">Display Width</string>
+    <string name="desc_seekbar_display_width">Auto generated size of WayDroid screen</string>
+    <string name="key_seekbar_wd_width">wd_width</string>
+    <string name="title_seekbar_wd_width">WayDroid Width</string>
+    <string name="desc_seekbar_wd_width">Used for user to override desired resolution</string>
+    <string name="key_switch_enable_never_sleep">never_sleep</string>
+    <string name="title_switch_enable_never_sleep">Never Sleep</string>
+    <string name="desc_switch_enable_never_sleep">Keep WayDroid awake and do not let container sleep</string>
+
     <string name="hint_app_icon">App icon</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

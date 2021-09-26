@@ -1,24 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        app:key="@string/key_category_pc_mode"
-        app:title="@string/title_category_pc_mode">
+        app:key="@string/key_category_wd_systemui"
+        app:title="@string/title_category_wd_systemui">
+        <SwitchPreferenceCompat
+            app:key="@string/key_switch_multi_windows_mode"
+            app:title="@string/title_switch_enable_multi_windows_mode"
+            app:summary="@string/desc_switch_enable_freedom_windows_mode"/>
 
         <SwitchPreferenceCompat
-            app:key="@string/key_switch_enable_pc_mode"
-            app:title="@string/title_switch_enable_pc_mode" />
+            app:key="@string/key_switch_invert_colors"
+            app:title="@string/title_switch_invert_colors"
+            app:summary="@string/desc_switch_invert_colors"/>
 
-        <Preference
-            app:fragment="com.waydroid.settings.WayDroidFullscreenManageFragment"
-            app:key="@string/key_set_all_fullscreen_apps"
-            app:title="@string/title_set_all_fullscreen_apps"/>
-    </PreferenceCategory>
+        <SeekBarPreference
+            app:key="@string/key_seekbar_height_padding"
+            app:title="@string/title_seekbar_height_padding"
+            app:summary="@string/desc_seekbar_height_padding"
+            app:min="0"
+            android:max="255"
+            app:showSeekBarValue="true" />
 
-    <PreferenceCategory
-        app:key="@string/key_category_bd_systemui"
-        app:title="@string/title_category_bd_systemui">
+        <SeekBarPreference
+            app:key="@string/key_seekbar_width_padding"
+            app:title="@string/title_seekbar_width_padding"
+            app:summary="@string/desc_seekbar_width_padding"
+            app:min="0"
+            android:max="255"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            app:key="@string/key_seekbar_display_width"
+            app:title="@string/title_seekbar_display_width"
+            app:summary="@string/desc_seekbar_display_width"
+            app:min="0"
+            android:max="255"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreference
+            app:key="@string/key_seekbar_wd_width"
+            app:title="@string/title_seekbar_wd_width"
+            app:summary="@string/desc_seekbar_wd_width"
+            app:min="0"
+            android:max="255"
+            app:showSeekBarValue="true" />
+
         <SwitchPreferenceCompat
-            app:key="@string/key_switch_enable_bd_nav_bar"
-            app:title="@string/title_switch_enable_bd_nav_bar" />
+            app:key="@string/key_switch_enable_never_sleep"
+            app:title="@string/title_switch_enable_never_sleep"
+            app:summary="@string/desc_switch_enable_never_sleep" />
     </PreferenceCategory>
 </PreferenceScreen>
