@@ -6,13 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.waydroid.settings.R
 import com.waydroid.settings.databinding.FragmentAboutBinding
 import com.waydroid.settings.utils.FileDownloader
+import io.noties.markwon.Markwon
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -99,13 +104,21 @@ class AboutFragment : Fragment() {
      */
     private fun loadMDViewer() {
         if (!isLoaded) {
-            binding.apply {
-                markdownView.apply {
-                    loadMarkdownFromFile(readmeMD)
-                    isOpenUrlInBrowser = true
-                    visibility = View.VISIBLE
+            lifecycleScope.launch {
+                // read content of MD file as an string in an IO thread
+                val contents = withContext(Dispatchers.IO) {
+                    readmeMD.readText()
                 }
-                progressBar.visibility = View.GONE
+                // Using Main/UI Thread set the views
+                withContext(Dispatchers.Main) {
+                    binding.apply {
+                        markdownView.apply {
+                            Markwon.create(this.context).setMarkdown(this, contents)
+                            visibility = View.VISIBLE
+                        }
+                        progressBar.visibility = View.GONE
+                    }
+                }
             }
             isLoaded = true
         }

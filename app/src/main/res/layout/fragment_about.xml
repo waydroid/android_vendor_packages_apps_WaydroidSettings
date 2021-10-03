@@ -17,11 +17,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
 
-        <com.mukesh.MarkdownView
+        <TextView
             android:id="@+id/markdown_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone" />
+            android:textColor="@color/black"
+            android:visibility="gone"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
 
     </FrameLayout>
 </layout>
