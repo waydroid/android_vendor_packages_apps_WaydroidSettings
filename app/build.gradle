@@ -29,13 +29,13 @@ spotless {
 }
 
 android {
-	compileSdkVersion 31
+	compileSdkVersion 30
 	buildToolsVersion "30.0.3"
 
 	defaultConfig {
 		applicationId "com.waydroid.settings"
 		minSdkVersion 28
-		targetSdkVersion 31
+		targetSdkVersion 30
 		versionCode 100
 		versionName "100"
 
