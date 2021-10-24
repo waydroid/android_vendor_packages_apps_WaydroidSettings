@@ -15,12 +15,12 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
+import java.io.File
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
-import java.io.File
-import java.util.concurrent.TimeUnit
 
 /**
  * A simple [Fragment] subclass.
@@ -46,8 +46,6 @@ class AboutFragment : Fragment() {
     private var isLoaded = false
     private var disposable = Disposables.disposed()
 
-
-
     private val fileDownloader by lazy {
         FileDownloader(
             OkHttpClient.Builder().build()
@@ -59,13 +57,14 @@ class AboutFragment : Fragment() {
         readmeMD = File("${requireContext().getExternalFilesDir(null)!!.absolutePath}/README.md")
     }
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.fragment_about, container, false)
+        binding = DataBindingUtil.inflate(LayoutInflater.from(context),
+            R.layout.fragment_about, container, false)
         return binding.root
     }
 
@@ -81,7 +80,8 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        disposable = fileDownloader.download("https://raw.githubusercontent.com/waydroid/docs/master/README.md", readmeMD)
+        disposable = fileDownloader.download(
+            "https://raw.githubusercontent.com/waydroid/docs/master/README.md", readmeMD)
             .throttleFirst(2, TimeUnit.SECONDS)
             .toFlowable(BackpressureStrategy.LATEST)
             .subscribeOn(Schedulers.io())
@@ -90,7 +90,7 @@ class AboutFragment : Fragment() {
                 // Downloading progress
             }, {
                 // Download failed
-               it.printStackTrace()
+                it.printStackTrace()
             }, {
                 // Downloaded
                 isDownloaded = true
@@ -123,5 +123,4 @@ class AboutFragment : Fragment() {
             isLoaded = true
         }
     }
-
 }
