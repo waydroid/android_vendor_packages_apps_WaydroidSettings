@@ -8,7 +8,8 @@ import com.waydroid.settings.fragments.AboutFragment
 import com.waydroid.settings.fragments.InfoFragment
 import com.waydroid.settings.fragments.SettingsFragment
 
-class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
+class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, lifecycle) {
 
     val tabNames = arrayListOf("Settings", "Info", "About")
 

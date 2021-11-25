@@ -19,23 +19,33 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.main_preference, rootKey)
 
-        switch(findPreference<Preference>(getString(R.string.key_switch_multi_windows_mode)) as SwitchPreferenceCompat, PROPERTY_WD_MULTI_WINDOWS_KEY)
-        switch(findPreference<Preference>(getString(R.string.key_switch_invert_colors)) as SwitchPreferenceCompat, PROPERTY_WD_INVERT_COLORS_KEY)
-        switch(findPreference<Preference>(getString(R.string.key_switch_enable_never_sleep)) as SwitchPreferenceCompat, PROPERTY_WD_NEVER_SLEEP_KEY)
+        switch(findPreference<Preference>(getString(R.string.key_switch_multi_windows_mode))
+            as SwitchPreferenceCompat, PROPERTY_WD_MULTI_WINDOWS_KEY)
+        switch(findPreference<Preference>(getString(R.string.key_switch_invert_colors))
+            as SwitchPreferenceCompat, PROPERTY_WD_INVERT_COLORS_KEY)
+        switch(findPreference<Preference>(getString(R.string.key_switch_enable_never_sleep))
+            as SwitchPreferenceCompat, PROPERTY_WD_NEVER_SLEEP_KEY)
 
-        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_height_padding)) as SeekBarPreference, PROPERTY_WD_HEIGHT_PADDING_KEY)
-        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_width_padding)) as SeekBarPreference, PROPERTY_WD_WIDTH_PADDING_KEY)
-        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_display_width)) as SeekBarPreference, PROPERTY_WD_DISPLAY_WIDTH_KEY)
-        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_wd_width)) as SeekBarPreference, PROPERTY_WD_WIDTH_KEY)
+        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_height_padding))
+            as SeekBarPreference, PROPERTY_WD_HEIGHT_PADDING_KEY)
+        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_width_padding))
+            as SeekBarPreference, PROPERTY_WD_WIDTH_PADDING_KEY)
+        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_display_width))
+            as SeekBarPreference, PROPERTY_WD_DISPLAY_WIDTH_KEY)
+        seekBar(findPreference<Preference>(getString(R.string.key_seekbar_wd_width))
+            as SeekBarPreference, PROPERTY_WD_WIDTH_KEY)
     }
 
     private fun switch(switchPreferenceCompat: SwitchPreferenceCompat, property: String) {
         switchPreferenceCompat.apply {
             isChecked = getBooleanSystemProperties(property)
             onPreferenceClickListener =
-                Preference.OnPreferenceClickListener { preference: Preference ->
-                    setProperty(property, (preference as SwitchPreferenceCompat).isChecked.toString())
-                    true
+                Preference.OnPreferenceClickListener {
+                    preference: Preference ->
+                        setProperty(property,
+                            (preference as SwitchPreferenceCompat)
+                                .isChecked.toString())
+                        true
                 }
         }
     }

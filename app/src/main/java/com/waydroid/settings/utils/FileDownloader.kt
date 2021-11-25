@@ -1,11 +1,11 @@
 package com.waydroid.settings.utils
 
 import io.reactivex.Observable
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import java.io.File
 import java.net.HttpURLConnection
 import java.util.concurrent.TimeUnit
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 class FileDownloader(okHttpClient: OkHttpClient) {
 
@@ -42,7 +42,7 @@ class FileDownloader(okHttpClient: OkHttpClient) {
                             fileOut.write(buffer, 0, bytes)
                             bytesCopied += bytes
                             bytes = read(buffer)
-                            emitter.onNext(((bytesCopied * 100)/length).toInt())
+                            emitter.onNext(((bytesCopied * 100) / length).toInt())
                         }
                     }
                     emitter.onComplete()
